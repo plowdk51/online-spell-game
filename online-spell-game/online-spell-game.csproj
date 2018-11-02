@@ -170,8 +170,11 @@
     <Content Include="Areas\HelpPage\HelpPage.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
-    <Content Include="Content\Images\dnd.jpg" />
-    <Content Include="Content\Images\spellcasterlogo.png" />
+    <Content Include="Content\Images\16517719.jpg" />
+    <Content Include="Content\Images\54933055.jpg" />
+    <Content Include="Content\Images\74698279.jpg" />
+    <Content Include="Content\Images\74698287.jpg" />
+    <Content Include="Content\Images\90692022.jpg" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
