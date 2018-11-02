@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26730.16
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "online-spell-game", "online-spell-game\online-spell-game.csproj", "{0AD9F45F-3B24-4045-B67D-3FB5EB4D2760}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0AD9F45F-3B24-4045-B67D-3FB5EB4D2760}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0AD9F45F-3B24-4045-B67D-3FB5EB4D2760}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0AD9F45F-3B24-4045-B67D-3FB5EB4D2760}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0AD9F45F-3B24-4045-B67D-3FB5EB4D2760}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {867C56EC-3528-4118-A298-FE3B5FC7712D}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,34 @@
+﻿@{
+    string hp = "5";
+}
+<!--
+<div class="row" style="text-align:center;margin:25px 0px;">
+	<img src="~/Content/Images/spellcasterlogo.png" alt="D&D Banner"/>
+	<br /><br />
+</div>
+-->
+<div class="row">
+    <div class="col-md-2 caster" id="caster-1">
+        <h1 class="player1">Player 1</h1>
+        <h1><span class="curr-hp">@hp</span><span class="total-hp" data-hp="@hp">/@hp</span> <i class="glyphicon glyphicon-heart"></i></h1>
+        @Html.Partial("ActionButtons")
+    </div>
+
+	<div class="col-md-8">
+		<div class="jumbotron">
+			<h1 class="spell-name" data-dice="">Connecting...</h1>
+			<p class="spell-level"></p>
+			<p class="lead spell-desc">Choose a name.</p>
+			
+			<p class="reset-container hide">
+				<a href="#" class="btn reset btn-primary">Play Again</a>
+			</p>
+		</div>
+	</div>
+
+    <div class="col-md-2 caster" id="caster-2">
+        <h1 class="player2">Player 2</h1>
+        <h1><span class="curr-hp">@hp</span><span class="total-hp">/@hp</span> <i class="glyphicon glyphicon-heart"></i></h1>
+        @Html.Partial("ActionButtons")
+    </div>
+</div>
