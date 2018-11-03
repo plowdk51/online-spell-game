@@ -16,7 +16,7 @@ $(document).ready(function () {
             websocket.send('cast');
         });
 
-        $(".hit").click(function (event) {
+        $(".tohit").click(function (event) {
             websocket.send('tohit');
         });
 
@@ -90,7 +90,7 @@ $(document).ready(function () {
 
             if (response.spell.rollToHit === true) {
                 $(".spell-desc").append("<hr />Roll To Hit...");
-                enableButton(caster, "hit");
+                enableButton(caster, "tohit");
             }
             else if (response.spell.save !== null) {
                 enableButton(target, "save");
@@ -100,7 +100,7 @@ $(document).ready(function () {
 		}
 		// TO HIT
 		else if (response.action == "tohit") {
-            disableButton(caster, "hit");
+            disableButton(caster, "tohit");
 
             $(".spell-desc").append("<br />" + response.roll + "<hr />");
             if (response.roll >= ac) {
@@ -136,7 +136,8 @@ $(document).ready(function () {
             var hp = $("#caster-" + target + " .curr-hp").text();
 			hp -= response.damage;
 			hp = hp < 0 ? 0 : hp;
-            $("#caster-" + target + " .curr-hp").text(hp);
+			$("#caster-" + target + " .curr-hp").text(hp);
+			subtractHealth(target, response.damage);
 
 			if (hp > 0) {
 				// Still Alive, Switch Turn
@@ -227,9 +228,9 @@ function startGame() {
 }
 
 function disableButton(num, btn) {
-    var selector = "#caster-" + num + " ." + btn;
+    var selector = "#caster-btns-" + num + " ." + btn;
     if (btn === "ALL") {
-        selector = "#caster-" + num + " a";
+        selector = "#caster-btns-" + num + " a";
     }
 
     $(selector).addClass("disabled");
@@ -239,9 +240,9 @@ function disableButton(num, btn) {
 
 function enableButton(num, btn) {
 	if (num == playerID) {
-		var selector = "#caster-" + num + " ." + btn;
+		var selector = "#caster-btns-" + num + " ." + btn;
 		if (selector === "ALL") {
-			selector = "#caster-" + num + " a";
+			selector = "#caster-btns-" + num + " a";
 		}
 
 		$(selector).removeClass("disabled");
@@ -261,4 +262,35 @@ function switchTurn() {
     $("#arrow-" + caster).addClass("on");
 
     enableButton(caster, "cast");
+}
+
+function subtractHealth(target, damage) {
+	var healthBar = $("#caster-" + target + " .health-bar");
+	var total = healthBar.data('total'),
+		value = healthBar.data('value'),
+		healthBar_inner = healthBar.find('.bar-inner'),
+		hit = healthBar.find('.hit');
+
+	if (value < 0) {
+		// you're dead
+		return;
+	}
+
+	var newValue = value - damage;
+	// calculate the percentage of the total width
+	var barWidth = (newValue / total) * 100;
+	var hitWidth = (damage / value) * 100 + "%";
+
+	// show hit bar and set the width
+	hit.css('width', hitWidth);
+	healthBar.data('value', newValue);
+
+	setTimeout(function () {
+		hit.css({ 'width': '0' });
+		healthBar_inner.css('width', barWidth + "%");
+	}, 500);
+
+	if (value < 0) {
+		// DEAD
+	}
 }
