@@ -6,30 +6,37 @@ var diceType = 0;
 var playerID = 0;
 
 $(document).ready(function () {
+	setTimeout(function () {
+		initialize();
+	}, 1000);	
+});
+
+function initialize() {
+
 	var username = prompt('Please enter a username:');
-	var uri = 'ws://' + window.location.hostname + ":" + window.location.port  + '/api/chat' + '?username=' + username;
-	
+	var uri = 'ws://' + window.location.hostname + ":" + window.location.port + '/api/chat' + '?username=' + username;
+
 	websocket = new WebSocket(uri);
-    
+
 	websocket.onopen = function () {
-        $(".cast").click(function (event) {
-            websocket.send('cast');
-        });
+		$(".cast").click(function (event) {
+			websocket.send('cast');
+		});
 
-        $(".tohit").click(function (event) {
-            websocket.send('tohit');
-        });
+		$(".tohit").click(function (event) {
+			websocket.send('tohit');
+		});
 
-        $(".save").click(function (event) {
-            websocket.send('save');
-        });
+		$(".save").click(function (event) {
+			websocket.send('save');
+		});
 
-        $(".damage").click(function (event) {
-            websocket.send('damage,' + $(".spell-name").attr("data-dice"));
-        });
+		$(".damage").click(function (event) {
+			websocket.send('damage,' + $(".spell-name").attr("data-dice"));
+		});
 
-        $(".death").click(function (event) {
-            websocket.send('deathsave');
+		$(".death").click(function (event) {
+			websocket.send('deathsave');
 		});
 
 		$(".reset").click(function (event) {
@@ -38,11 +45,11 @@ $(document).ready(function () {
 	};
 
 	websocket.onerror = function (event) {
-        alert('Sorry, there are already two people playin! sorry not sorry');
+		alert('Sorry, there are already two people playin! sorry not sorry');
 	};
 
 	websocket.onmessage = function (event) {
-        var response = JSON.parse(event.data);
+		var response = JSON.parse(event.data);
 		console.log(response);
 
 		// ASSIGN PLAYER ID
@@ -69,48 +76,47 @@ $(document).ready(function () {
 			if (playerID != 1) {
 				$(".player1").html(response.username);
 			}
-			
+
 			// once player 1 name has been shared to player 2, game is ready to start...
 			startGame();
 		}
-        // ERROR
-        else if (response.action == "error")
-        {
-            $("#success").css("display", "none");
-            $("#error").css("display", "block");
+		// ERROR
+		else if (response.action == "error") {
+			$("#success").css("display", "none");
+			$("#error").css("display", "block");
 		}
-        // CAST
-        else if (response.action == "cast") {
-            disableButton(caster, "cast");
+		// CAST
+		else if (response.action == "cast") {
+			disableButton(caster, "cast");
 
-            $(".spell-name").html(response.spell.name);
-            $(".spell-name").attr("data-dice",response.spell.diceType);
-            $(".spell-level").html(response.spell.level === 0 ? "Cantrip" : "Level " + response.spell.level);
-            $(".spell-desc").html(response.spell.description);
+			$(".spell-name").html(response.spell.name);
+			$(".spell-name").attr("data-dice", response.spell.diceType);
+			$(".spell-level").html(response.spell.level === 0 ? "Cantrip" : "Level " + response.spell.level);
+			$(".spell-desc").html(response.spell.description);
 
-            if (response.spell.rollToHit === true) {
-                $(".spell-desc").append("<hr />Roll To Hit...");
-                enableButton(caster, "tohit");
-            }
-            else if (response.spell.save !== null) {
-                enableButton(target, "save");
-            }
+			if (response.spell.rollToHit === true) {
+				$(".spell-desc").append("<hr />Roll To Hit...");
+				enableButton(caster, "tohit");
+			}
+			else if (response.spell.save !== null) {
+				enableButton(target, "save");
+			}
 
-            diceType = response.spell.diceType;
+			diceType = response.spell.diceType;
 		}
 		// TO HIT
 		else if (response.action == "tohit") {
-            disableButton(caster, "tohit");
+			disableButton(caster, "tohit");
 
-            $(".spell-desc").append("<br />" + response.roll + "<hr />");
-            if (response.roll >= ac) {
-                $(".spell-desc").append("<p>You hit!</p>Roll Damage...");
-                enableButton(caster, "damage");
-            }
-            else {
-                $(".spell-desc").append("<p>You missed.</p>");
-                switchTurn();
-            }
+			$(".spell-desc").append("<br />" + response.roll + "<hr />");
+			if (response.roll >= ac) {
+				$(".spell-desc").append("<p>You hit!</p>Roll Damage...");
+				enableButton(caster, "damage");
+			}
+			else {
+				$(".spell-desc").append("<p>You missed.</p>");
+				switchTurn();
+			}
 		}
 		// SAVE
 		else if (response.action == "save") {
@@ -128,12 +134,12 @@ $(document).ready(function () {
 			}
 		}
 		// DAMAGE
-        else if (response.action == "damage") {
-            disableButton(target, "save");
+		else if (response.action == "damage") {
+			disableButton(target, "save");
 
-            $(".spell-desc").append("<hr />Spell dealt <b>" + response.damage + "</b> damage!");
+			$(".spell-desc").append("<hr />Spell dealt <b>" + response.damage + "</b> damage!");
 
-            var hp = $("#caster-" + target + " .curr-hp").text();
+			var hp = $("#caster-" + target + " .curr-hp").text();
 			hp -= response.damage;
 			hp = hp < 0 ? 0 : hp;
 			$("#caster-" + target + " .curr-hp").text(hp);
@@ -141,8 +147,8 @@ $(document).ready(function () {
 
 			if (hp > 0) {
 				// Still Alive, Switch Turn
-                switchTurn();
-            }
+				switchTurn();
+			}
 			else {
 				// Player is Dead -- TODO: death saves for target
 				if (target == playerID) {
@@ -163,11 +169,12 @@ $(document).ready(function () {
 				$(".action-btns a").addClass("btn-default");
 
 				$(".reset-container").removeClass("hide");
-            }
+			}
 		}
 		// RESET
 		else if (response.action == "reset") {
 			startGame();
+			resetHealthBars();
 		}
 	};
 
@@ -205,8 +212,7 @@ $(document).ready(function () {
 
 		$('#messages').prepend('<div>' + "The connection was closed for the following reason: " + reason + '</div>');
 	};
-	
-});
+}
 
 function startGame() {
 	caster = 1;
@@ -292,5 +298,21 @@ function subtractHealth(target, damage) {
 
 	if (value < 0) {
 		// DEAD
+	}
+}
+
+function resetHealthBars() {
+	for (var target = 1; target <= 2; target++) {
+		var healthBar = $("#caster-" + target + " .health-bar");
+		var total = healthBar.data('total'),
+			value = healthBar.data('value'),
+			healthBar_inner = healthBar.find('.bar-inner'),
+			hit = healthBar.find('.hit');
+
+		healthBar.data('value', healthBar.data('total'));
+
+		hit.css({ 'width': '0' });
+
+		healthBar_inner.css('width', '100%');
 	}
 }
