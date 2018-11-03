@@ -1,0 +1,125 @@
+﻿body {
+	background-color: grey !important;
+	background-image: url('Images/74698279.png');
+	background-size: cover;
+	font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.caster {
+	width: 480px;
+}
+
+.caster-photo {
+	position: relative;
+	z-index: 800;
+	width:400px;
+	margin:0 auto;
+}
+
+.caster-label {
+	background-color: #c9ad75;
+	border: 2px solid #b09764;
+	border-radius: 3px;
+	margin-top: -50px;
+	padding:5px;
+	position: relative;
+	z-index: 900;
+}
+
+/* SHIELD */
+.caster-ac {
+	width: 70px;
+	font-family: Impact,Charcoal,sans-serif;
+	height: 70px;
+	display: block;
+	float:left;
+	margin-left:5px;
+	padding-top:5px;
+}
+
+	.caster-ac span {
+		display: block;
+	}
+
+.PajzsLeft {
+	float: left;
+	width: 0;
+	border-left: 10px solid transparent;
+	border-top: 60px solid #565b60;
+}
+
+.PajzsMiddle {
+	float: left;
+	width: 50px;
+	height: 50px;
+	background-color: #565b60;
+	color: #FFF;
+	text-align: center;
+	padding-top: 10px;
+	font-size: 36px;
+}
+
+.PajzsRight {
+	float: left;
+	width: 0;
+	border-right: 10px solid transparent;
+	border-top: 60px solid #565b60;
+}
+
+.PajzsBottom {
+	width: 0;
+	height: 0;
+	border-left: 24px solid transparent;
+	border-right: 24px solid transparent;
+	border-top: 10px solid #565b60;
+	clear: both;
+	margin-left: 10px;
+}
+
+/* RESOURCE BARS */
+.bar {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	width: 300px;
+	height: 30px;
+	padding: 5px;
+	background-color: #333;
+	border-radius: 30px;
+	position: relative;
+	margin:5px auto;
+}
+
+.bar-inner {
+	width: 100%;
+	height: 20px;
+	position: relative;
+	border-radius:30px;
+	transition: width .5s linear;
+}
+
+	.health-bar .bar-inner {
+		background-color: #7c2727;
+	}
+
+	.mana-bar .bar-inner {
+		background-color: #2d5b8e;
+	}
+
+.hit {
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	width: 0px;
+	transition: width .5s linear;
+	border-radius:0 30px 30px 0;
+}
+
+	.health-bar .hit {
+		background: #f16c6c;
+	}
+
+	.mana-bar .hit {
+		background: #6e9ed2;
+	}
