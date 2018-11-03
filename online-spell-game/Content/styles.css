@@ -19,6 +19,26 @@ a.disabled {
 	text-decoration:none;
 }
 
+#game-text {
+	position: absolute;
+	top: 150px;
+	left: 50%;
+	transform: translate(-50%, 0);
+	background-color: #f6db92;
+	border: 4px solid #85764d;
+	border-radius: 4px;
+	width: 400px;
+	padding: 20px;
+}
+
+#caster-container-1 {
+	float: left;
+}
+
+#caster-container-2 {
+	float: right;
+}
+
 .caster {
 	width: 480px;
 }
@@ -54,6 +74,33 @@ a.disabled {
 		padding:0;
 		margin:0;
 	}
+
+#caster-btns-1 {
+	position: absolute;
+	z-index: 990;
+	bottom: 0;
+	width: 200px;
+	height: 240px;
+	left: 35%;
+}
+
+#caster-btns-2 {
+	position: absolute;
+	z-index: 990;
+	bottom: 0;
+	width: 200px;
+	height: 240px;
+	right: 35%;
+}
+
+#spellbook {
+	position: absolute;
+	z-index: 980;
+	bottom: 0;
+	width: 961px;
+	left: 50%;
+	transform: translate(-50%, 0);
+}
 
 /* SHIELD */
 .caster-ac {

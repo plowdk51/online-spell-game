@@ -3,7 +3,7 @@
 	string mana = "5"; // TODO: pass in object of data to Caster partial
 }
 
-<div style="position:absolute; top:150px; left:50%; transform: translate(-50%, 0); background-color:#f6db92; border:4px solid #85764d; border-radius:4px; width:400px; padding:20px;">
+<div id="game-text">
 	<h1 class="spell-name" data-dice="">Connecting...</h1>
 	<p class="spell-level"></p>
 	<p class="lead spell-desc">Choose a name.</p>
@@ -13,52 +13,24 @@
 	</p>
 </div>
 
-<div style="float:right;">
+<div id="caster-container-2">
 	@Html.Partial("Caster", "2")
 </div>
 
-<div style="float:left;">
+<div id="caster-container-1">
 	@Html.Partial("Caster", "1")
 </div>
 
 <div class="clear"></div>
 
-<div id="caster-btns-1" style="position:absolute; z-index:990; bottom:0; width:200px; height:240px; left:35%">
+<div id="caster-btns-1">
 	@Html.Partial("ActionButtons")
 </div>
 
-<div id="caster-btns-2" style="position:absolute; z-index:990; bottom:0; width:200px; height:240px; right:35%;">
+<div id="caster-btns-2">
 	@Html.Partial("ActionButtons")
 </div>
 
-<div style="position:absolute; z-index:980; bottom:0; width:961px; left:50%; transform: translate(-50%, 0);">
+<div id="spellbook">
 	<img src="~/Content/Images/16517719.png" alt="" />
 </div>
-
-<!--
-<div class="row">
-	<div class="col-md-2 caster" id="caster-1">
-		<h1 class="player1">Player 1</h1>
-		<h1><span class="curr-hp">@hp</span><span class="total-hp" data-hp="@hp">/@hp</span> <i class="glyphicon glyphicon-heart"></i></h1>
-		@Html.Partial("ActionButtons")
-	</div>
-
-	<div class="col-md-8">
-		<div class="jumbotron">
-			<h1 class="spell-name" data-dice="">Connecting...</h1>
-			<p class="spell-level"></p>
-			<p class="lead spell-desc">Choose a name.</p>
-
-			<p class="reset-container hide">
-				<a href="#" class="btn reset btn-primary">Play Again</a>
-			</p>
-		</div>
-	</div>
-
-	<div class="col-md-2 caster" id="caster-2">
-		<h1 class="player2">Player 2</h1>
-		<h1><span class="curr-hp">@hp</span><span class="total-hp">/@hp</span> <i class="glyphicon glyphicon-heart"></i></h1>
-		@Html.Partial("ActionButtons")
-	</div>
-</div>
--->
