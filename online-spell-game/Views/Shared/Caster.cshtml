@@ -1,4 +1,6 @@
-﻿<div class="caster">
+﻿@model string
+
+<div class="caster" id="caster-@Model">
 	<div class="caster-photo">
 		<img src="~/Content/Images/54933055.png" alt="" />
 	</div>
@@ -16,21 +18,32 @@
 				</span>
 			</span>
 		</div>
-		<div class="bar health-bar" data-total="20" data-value="20">
-			<div class="bar-inner">
-				<div class="hit"></div>
+		<div class="bar-container">
+			<div class="bar health-bar" data-total="20" data-value="20">
+				<div class="bar-inner">
+					<div class="hit"></div>
+				</div>
+			</div>
+			<div class="bar-number">
+				<span class="curr-hp">20</span><span class="total-hp">/20</span>
 			</div>
 		</div>
-		<div class="bar mana-bar" data-total="5" data-value="5">
-			<div class="bar-inner">
-				<div class="hit"></div>
+		<div class="bar-container">
+			<div class="bar mana-bar" data-total="5" data-value="5">
+				<div class="bar-inner">
+					<div class="hit"></div>
+				</div>
+			</div>
+			<div class="bar-number">
+				<span class="curr-mana">5</span><span class="total-mana">/5</span>
 			</div>
 		</div>
+		<div class="clear"></div>
 	</div>
 </div>
-
+<!--
 <br />
-
 <button class="damage random">hit random</button>
 <button class="mana random">use mana</button>
 <button class="reset">reset</button>
+-->

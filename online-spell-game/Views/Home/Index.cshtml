@@ -1,7 +1,22 @@
 ﻿@{
-	string hp = "5";
+	string hp = "20";
+	string mana = "5"; // TODO: pass in object of data to Caster partial
 }
-@Html.Partial("Caster")
+
+<div style="float:right;">
+	@Html.Partial("Caster", "2")
+</div>
+
+<div style="float:left; margin-top:200px;">
+	@Html.Partial("Caster", "1")
+</div>
+
+<div class="clear"></div>
+
+<div style="position:absolute; bottom:0; width:961px; left:50%; transform: translate(-50%, 0);">
+	<img src="~/Content/Images/16517719.png" alt="" />
+</div>
+
 <!--
 <div class="row">
 	<div class="col-md-2 caster" id="caster-1">

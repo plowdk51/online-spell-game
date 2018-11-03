@@ -1,8 +1,12 @@
 ﻿body {
-	background-color: grey !important;
+	background-color: grey;
 	background-image: url('Images/74698279.png');
 	background-size: cover;
 	font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.clear {
+	clear:both;
 }
 
 .caster {
@@ -16,12 +20,16 @@
 	margin:0 auto;
 }
 
+	#caster-2 .caster-photo {
+		transform: scaleX(-1);
+	}
+
 .caster-label {
-	background-color: #c9ad75;
-	border: 2px solid #b09764;
-	border-radius: 3px;
+	background-color: #63401a;
+	border: 4px solid #482e12;
+	border-radius: 6px;
 	margin-top: -50px;
-	padding:5px;
+	padding: 5px;
 	position: relative;
 	z-index: 900;
 }
@@ -45,14 +53,14 @@
 	float: left;
 	width: 0;
 	border-left: 10px solid transparent;
-	border-top: 60px solid #565b60;
+	border-top: 60px solid #a57c18;
 }
 
 .PajzsMiddle {
 	float: left;
 	width: 50px;
 	height: 50px;
-	background-color: #565b60;
+	background-color: #a57c18;
 	color: #FFF;
 	text-align: center;
 	padding-top: 10px;
@@ -63,7 +71,7 @@
 	float: left;
 	width: 0;
 	border-right: 10px solid transparent;
-	border-top: 60px solid #565b60;
+	border-top: 60px solid #a57c18;
 }
 
 .PajzsBottom {
@@ -71,12 +79,18 @@
 	height: 0;
 	border-left: 24px solid transparent;
 	border-right: 24px solid transparent;
-	border-top: 10px solid #565b60;
+	border-top: 10px solid #a57c18;
 	clear: both;
 	margin-left: 10px;
 }
 
 /* RESOURCE BARS */
+.bar-container {
+	float: left;
+	height: 40px;
+	margin-left: 10px;
+}
+
 .bar {
 	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;
@@ -84,10 +98,11 @@
 	width: 300px;
 	height: 30px;
 	padding: 5px;
-	background-color: #333;
+	background-color: #111;
 	border-radius: 30px;
 	position: relative;
-	margin:5px auto;
+	margin: 5px auto;
+	float: left;
 }
 
 .bar-inner {
@@ -105,6 +120,13 @@
 	.mana-bar .bar-inner {
 		background-color: #2d5b8e;
 	}
+
+.bar-number {
+	display: inline-block;
+	color: white;
+	font-size: 24px;
+	padding: 3px 0 0 7px;
+}
 
 .hit {
 	position: absolute;
