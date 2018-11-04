@@ -1,9 +1,4 @@
-﻿@{
-	string hp = "20";
-	string mana = "5"; // TODO: pass in object of data to Caster partial
-}
-
-<div id="game-text">
+﻿<div id="game-text">
 	<h1 class="spell-name" data-dice="">Greetings...</h1>
 	<p class="spell-level"></p>
 	<p class="lead spell-desc">
@@ -12,18 +7,29 @@
 		<br />
 		<button id="join-btn">Join</button>
 	</p>
-
 	<p class="reset-container hide">
 		<a href="#" class="btn reset btn-primary">Play Again</a>
 	</p>
 </div>
 
 <div id="caster-container-2">
-	@Html.Partial("Caster", "2")
+	@Html.Partial("Caster", new online_spell_game.Models.Caster()
+	{
+		num = 2,
+		hp = 20,
+		mana = 5,
+		ac = 13
+	})
 </div>
 
 <div id="caster-container-1">
-	@Html.Partial("Caster", "1")
+	@Html.Partial("Caster", new online_spell_game.Models.Caster()
+	{
+		num = 1,
+		hp = 20,
+		mana = 5,
+		ac = 13
+	})
 </div>
 
 <div class="clear"></div>

@@ -1,16 +1,15 @@
-﻿@model string
+﻿@model online_spell_game.Models.Caster
 
-<div class="caster" id="caster-@Model">
+<div class="caster" id="caster-@Model.num">
 	<div class="caster-photo">
 		<img src="~/Content/Images/54933055.png" alt="" />
 	</div>
 	<div class="caster-label">
 		<div class="caster-ac">
 			<span class="Pajzs">
-				<span class="PajzsLeft">
-				</span>
+				<span class="PajzsLeft"></span>
 				<span class="PajzsMiddle">
-					13
+					@Model.ac
 				</span>
 				<span class="PajzsRight">
 				</span>
@@ -19,26 +18,26 @@
 			</span>
 		</div>
 		<div class="caster-name">
-			<h2 class="player@(Model)">Player @Model</h2>
+			<h2 class="player@(Model.num)">Player @Model.num</h2>
 		</div>
 		<div class="bar-container">
-			<div class="bar health-bar" data-total="20" data-value="20">
+			<div class="bar health-bar" data-total="@Model.hp" data-value="@Model.hp">
 				<div class="bar-inner">
 					<div class="hit"></div>
 				</div>
 			</div>
 			<div class="bar-number">
-				<span class="curr-hp">20</span><span class="total-hp" data-hp="20">/20</span>
+				<span class="curr-hp">@Model.hp</span><span class="total-hp" data-hp="@Model.hp">/@Model.hp</span>
 			</div>
 		</div>
 		<div class="bar-container">
-			<div class="bar mana-bar" data-total="5" data-value="5">
+			<div class="bar mana-bar" data-total="@Model.mana" data-value="@Model.mana">
 				<div class="bar-inner">
 					<div class="hit"></div>
 				</div>
 			</div>
 			<div class="bar-number">
-				<span class="curr-mana">5</span><span class="total-mana">/5</span>
+				<span class="curr-mana">@Model.mana</span><span class="total-mana">/@Model.mana</span>
 			</div>
 		</div>
 		<div class="clear"></div>
