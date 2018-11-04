@@ -1,4 +1,5 @@
-﻿var caster = 1; // TODO: both players roll to see who goes first?
+﻿var joined = false;
+var caster = 1; // TODO: both players roll to see who goes first?
 var target = 2;
 var ac = 13;
 var dc = 13;
@@ -6,15 +7,26 @@ var diceType = 0;
 var playerID = 0;
 
 $(document).ready(function () {
-	setTimeout(function () {
-		initialize();
-	}, 1000);	
+	$('[name="username"]').keypress(function (e) {
+		if (e.which == 13) {
+			join();
+		}
+	});
+
+	$("#join-btn").click(function (e) {
+		join();
+	});
 });
 
-function initialize() {
+function join() {
+	if (joined == false) {
+		joined = true;
+		initialize($('[name="username"]').val());
+	}
+}
 
-	var username = prompt('Please enter a username:');
-	var uri = 'ws://' + window.location.hostname + ":" + window.location.port + '/api/chat' + '?username=' + username;
+function initialize(username) {
+	var uri = 'ws://' + window.location.hostname + ":" + window.location.port + '/api/chat/' + username;
 
 	websocket = new WebSocket(uri);
 
@@ -45,7 +57,7 @@ function initialize() {
 	};
 
 	websocket.onerror = function (event) {
-		alert('Sorry, there are already two people playin! sorry not sorry');
+		alert('A connection error occurred.');
 	};
 
 	websocket.onmessage = function (event) {

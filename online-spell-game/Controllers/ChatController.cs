@@ -1,20 +1,20 @@
 ﻿using Microsoft.Web.WebSockets;
 using Newtonsoft.Json;
+using online_spell_game.Models.Spells;
 using System;
 using System.Net;
 using System.Net.Http;
 using System.Web;
 using System.Web.Http;
-using online_spell_game.Models.Spells;
 
 namespace online_spell_game.Controllers
 {
 	public class ChatController : ApiController
 	{
 
-		public HttpResponseMessage Get(string username)
+		public HttpResponseMessage Get(string id)
 		{
-			HttpContext.Current.AcceptWebSocketRequest(new ChatWebSocketHandler(getValidUsername(username)));
+			HttpContext.Current.AcceptWebSocketRequest(new ChatWebSocketHandler(getValidUsername(id)));
 			return Request.CreateResponse(HttpStatusCode.SwitchingProtocols);
 		}
 
@@ -141,7 +141,7 @@ namespace online_spell_game.Controllers
 		private static string stripSpecialCharacters(string in_str)
 		{
 			string out_str = "";
-			string allowed = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+			string allowed = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789 -.,'()";
 			char c;
 
 			for (int i = 0; i < in_str.Length; i++)

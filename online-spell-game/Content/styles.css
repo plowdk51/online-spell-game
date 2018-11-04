@@ -13,10 +13,41 @@
 	display:none;
 }
 
-a.disabled {
-	cursor:not-allowed;
-	color:grey;
+a,
+a:hover,
+a:focus,
+a:visited {
 	text-decoration:none;
+	color:inherit;
+	cursor:pointer;
+}
+
+a.disabled {
+	cursor: not-allowed !important;
+	color: #a39062;
+}
+
+button {
+	padding: 7px 15px;
+	font-size: 18px;
+	background-color: #63401a;
+	border: 2px solid #482e12;
+	border-radius: 5px;
+	color:white;
+	display:inline-block;
+}
+
+	button:hover {
+		cursor: pointer;
+		background-color: #754c1f;
+		border: 2px solid #583917;
+	}
+
+input {
+	padding: 5px;
+	border: 2px solid #85764d;
+	border-radius:5px;
+	font-size:24px;
 }
 
 #game-text {
@@ -80,8 +111,12 @@ a.disabled {
 	z-index: 990;
 	bottom: 0;
 	width: 200px;
-	height: 240px;
-	left: 35%;
+	height: 250px;
+	font-size: 16px;
+	font-family: 'Merienda One', Helvetica, sans-serif;
+	color: #482e12 !important;
+	left: 50%;
+	transform: translate(-250px, 0);
 }
 
 #caster-btns-2 {
@@ -89,8 +124,12 @@ a.disabled {
 	z-index: 990;
 	bottom: 0;
 	width: 200px;
-	height: 240px;
-	right: 35%;
+	height: 250px;
+	font-size: 16px;
+	font-family: 'Merienda One', Helvetica, sans-serif;
+	color: #482e12 !important;
+	left: 50%;
+	transform: translate(100px, 0);
 }
 
 #spellbook {

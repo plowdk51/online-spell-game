@@ -4,9 +4,14 @@
 }
 
 <div id="game-text">
-	<h1 class="spell-name" data-dice="">Connecting...</h1>
+	<h1 class="spell-name" data-dice="">Greetings...</h1>
 	<p class="spell-level"></p>
-	<p class="lead spell-desc">Choose a name.</p>
+	<p class="lead spell-desc">
+		<input type="text" name="username" value="" placeholder="Enter your name" maxlength="32" autofocus autocomplete="on" />
+		<br />
+		<br />
+		<button id="join-btn">Join</button>
+	</p>
 
 	<p class="reset-container hide">
 		<a href="#" class="btn reset btn-primary">Play Again</a>
