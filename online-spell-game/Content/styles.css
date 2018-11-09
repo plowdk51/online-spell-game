@@ -52,7 +52,7 @@ input {
 
 #game-text {
 	position: absolute;
-	top: 150px;
+	/*top: 150px;*/
 	left: 50%;
 	transform: translate(-50%, 0);
 	background-color: #f6db92;

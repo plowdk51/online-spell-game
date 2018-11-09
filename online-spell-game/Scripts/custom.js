@@ -32,27 +32,44 @@ function initialize(username) {
 
 	websocket.onopen = function () {
 		$(".cast").click(function (event) {
-			websocket.send('cast');
+			if ($(this).hasClass("disabled") == false) {
+				disableButton(caster, "cast");
+				// TODO: check mana here
+				websocket.send('cast,' + $(this).attr("data-spell"));
+			}
 		});
 
 		$(".tohit").click(function (event) {
-			websocket.send('tohit');
+			if ($(this).hasClass("disabled") == false) {
+				disableButton(caster, "tohit");
+				websocket.send('tohit');
+			}
 		});
 
 		$(".save").click(function (event) {
-			websocket.send('save');
+			if ($(this).hasClass("disabled") == false) {
+				disableButton(target, "save");
+				websocket.send('save');
+			}
 		});
 
 		$(".damage").click(function (event) {
-			websocket.send('damage,' + $(".spell-name").attr("data-dice"));
+			if ($(this).hasClass("disabled") == false) {
+				disableButton(target, "damage");
+				websocket.send('damage,' + $(".spell-name").attr("data-dice"));
+			}
 		});
 
 		$(".death").click(function (event) {
-			websocket.send('deathsave');
+			if ($(this).hasClass("disabled") == false) {
+				websocket.send('deathsave');
+			}
 		});
 
 		$(".reset").click(function (event) {
-			websocket.send('reset');
+			if ($(this).hasClass("disabled") == false) {
+				websocket.send('reset');
+			}
 		});
 	};
 
@@ -99,8 +116,6 @@ function initialize(username) {
 		}
 		// CAST
 		else if (response.action == "cast") {
-			disableButton(caster, "cast");
-
 			$(".spell-name").html(response.spell.name);
 			$(".spell-name").attr("data-dice", response.spell.diceType);
 			$(".spell-level").html(response.spell.level === 0 ? "Cantrip" : "Level " + response.spell.level);
@@ -118,8 +133,6 @@ function initialize(username) {
 		}
 		// TO HIT
 		else if (response.action == "tohit") {
-			disableButton(caster, "tohit");
-
 			$(".spell-desc").append("<br />" + response.roll + "<hr />");
 			if (response.roll >= ac) {
 				$(".spell-desc").append("<p>You hit!</p>Roll Damage...");
@@ -132,8 +145,6 @@ function initialize(username) {
 		}
 		// SAVE
 		else if (response.action == "save") {
-			disableButton(target, "save");
-
 			$(".spell-desc").append("<br />" + response.roll + "<hr />");
 
 			if (response.roll >= dc) {
@@ -147,8 +158,6 @@ function initialize(username) {
 		}
 		// DAMAGE
 		else if (response.action == "damage") {
-			disableButton(target, "save");
-
 			$(".spell-desc").append("<hr />Spell dealt <b>" + response.damage + "</b> damage!");
 
 			var hp = $("#caster-" + target + " .curr-hp").text();

@@ -2,6 +2,7 @@
 using Newtonsoft.Json;
 using online_spell_game.Models.Spells;
 using System;
+using System.Diagnostics;
 using System.Net;
 using System.Net.Http;
 using System.Web;
@@ -54,7 +55,7 @@ namespace online_spell_game.Controllers
 
 				if (messageArray[0] == "cast")
 				{
-					Spell spell = SpellBook.GetRandomSpell();
+					Spell spell = SpellBook.spells.Find(s => s.name == messageArray[1]);
 					obj = JsonConvert.SerializeObject(spell);
 
 					json_action = "cast";

@@ -171,6 +171,7 @@
     <Content Include="Areas\HelpPage\HelpPage.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\d20.css" />
     <Content Include="Content\Images\16517719.png" />
     <Content Include="Content\Images\16517719_xl.jpg" />
     <Content Include="Content\Images\54933055.png" />
@@ -179,6 +180,7 @@
     <Content Include="Content\Images\74698279_xl.jpg" />
     <Content Include="Content\Images\74698287.png" />
     <Content Include="Content\Images\74698287_xl.jpg" />
+    <Content Include="Content\Images\blue.png" />
     <Content Include="Content\styles.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -207,6 +209,7 @@
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\custom.js" />
+    <Content Include="Scripts\d20.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
