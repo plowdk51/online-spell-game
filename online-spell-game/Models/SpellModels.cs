@@ -8,6 +8,7 @@ namespace online_spell_game.Models.Spells
 		public string level { get; set; }
 		public string name { get; set; }
 		public string description { get; set; }
+		public string cost { get; set; }
 		public bool rollToHit { get; set; }
 		public SavingThrow save { get; set; }
 		public string howManyDice { get; set; }
@@ -34,6 +35,7 @@ namespace online_spell_game.Models.Spells
 				level = "0",
 				name = "Acid Splash",
 				description = "You hurl a bubble of acid. A target must succeed on a Dexterity saving throw or take 1d6 acid damage.",
+				cost = "1",
 				rollToHit = false,
 				save = new SavingThrow()
 				{
@@ -51,6 +53,7 @@ namespace online_spell_game.Models.Spells
 				level = "0",
 				name = "Fire Bolt",
 				description = "You hurl a mote of fire. Make a ranged spell attack against the target. On a hit, the target takes 1d10 fire damage.",
+				cost = "2",
 				rollToHit = true,
 				save = null,
 				howManyDice = "1",
@@ -63,6 +66,7 @@ namespace online_spell_game.Models.Spells
 				level = "0",
 				name = "Ray of Frost",
 				description = "A frigid beam of blue-white light streaks toward a creature. Make a ranged spell attack against the target. On a hit, it takes 1d8 cold damage.",
+				cost = "3",
 				rollToHit = true,
 				save = null,
 				howManyDice = "1",
@@ -75,6 +79,7 @@ namespace online_spell_game.Models.Spells
 				level = "0",
 				name = "Infestation",
 				description = "You cause a cloud of mites, fleas, and other parasites to appear momentarily on one creature you can see within range. The target must succeed on a Constitution saving throw, or it takes 1d6 poison damage.",
+				cost = "4",
 				rollToHit = false,
 				save = new SavingThrow()
 				{
@@ -92,6 +97,7 @@ namespace online_spell_game.Models.Spells
 				level = "0",
 				name = "Toll the Dead",
 				description = "You point at one creature you can see within range, and the sound of a dolorous bell fills the air around it for a moment. The target must succeed on a Wisdom saving throw or take 1d8 necrotic damage. If the target is missing any of its hit points, it instead takes 1d12 necrotic damage.",
+				cost = "5",
 				rollToHit = false,
 				save = new SavingThrow()
 				{

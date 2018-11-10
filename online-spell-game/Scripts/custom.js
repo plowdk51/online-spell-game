@@ -121,6 +121,12 @@ function initialize(username) {
 			$(".spell-level").html(response.spell.level === 0 ? "Cantrip" : "Level " + response.spell.level);
 			$(".spell-desc").html(response.spell.description);
 
+			var mana = $("#caster-" + caster + " .curr-mana").text();
+			mana -= response.spell.cost;
+			mana = mana < 0 ? 0 : mana;
+			$("#caster-" + caster + " .curr-mana").text(mana);
+			subtractMana(caster, response.spell.cost);
+
 			if (response.spell.rollToHit === true) {
 				$(".spell-desc").append("<hr />Roll To Hit...");
 				enableButton(caster, "tohit");
@@ -189,7 +195,7 @@ function initialize(username) {
 				$(".action-btns a").removeClass("btn-primary");
 				$(".action-btns a").addClass("btn-default");
 
-				$(".reset-container").removeClass("hide");
+				$(".reset-container").show();
 			}
 		}
 		// RESET
@@ -255,26 +261,37 @@ function startGame() {
 }
 
 function disableButton(num, btn) {
-    var selector = "#caster-btns-" + num + " ." + btn;
-    if (btn === "ALL") {
-        selector = "#caster-btns-" + num + " a";
-    }
+	var selector = "#caster-btns ." + btn;
+	if (btn === "ALL") {
+		selector = "#caster-btns a";
+	}
 
-    $(selector).addClass("disabled");
-    $(selector).removeClass("btn-primary");
-    $(selector).addClass("btn-default");
+	$(selector).addClass("disabled");
+	
+	$("#" + btn + "-container button").addClass("disabled");
+	$("#" + btn + "-container").hide();
 }
 
 function enableButton(num, btn) {
+	console.log("enableButton(" + num + ", " + btn + ")");
 	if (num == playerID) {
-		var selector = "#caster-btns-" + num + " ." + btn;
-		if (selector === "ALL") {
-			selector = "#caster-btns-" + num + " a";
-		}
+		if (btn == "cast") {
+			var selector = "#caster-btns ." + btn;
 
-		$(selector).removeClass("disabled");
-		$(selector).addClass("btn-primary");
-		$(selector).removeClass("btn-default");
+			var curr_mana = $("#caster-" + num + " .curr-mana").text();
+
+			$(selector).each(function (index, elem) {
+				console.log(index + ". " + $(elem).attr("data-spell"));
+				if ($(elem).attr("data-cost") <= curr_mana) {
+					console.log($(elem).attr("data-cost") + " <= " + curr_mana);
+					$(elem).removeClass("disabled");
+				}
+			});
+		}
+		else {
+			$("#" + btn + "-container button").removeClass("disabled");
+			$("#" + btn + "-container").show();
+		}
 	}
 }
 
@@ -285,8 +302,19 @@ function switchTurn() {
     caster = target;
     target = temp;
 
+	// TODO: change player indicator
+	/*
     $("#arrow-" + target).removeClass("on");
-    $("#arrow-" + caster).addClass("on");
+	$("#arrow-" + caster).addClass("on"); 
+	*/
+
+	// gain 1 mana each turn
+	var mana = parseInt($("#caster-" + caster + " .curr-mana").text());
+	if (mana < 5) { // TODO: don't hard-code max mana
+		mana += 1;
+		$("#caster-" + caster + " .curr-mana").text(mana);
+		subtractMana(caster, -1); // subtract a negative = add
+	}
 
     enableButton(caster, "cast");
 }
@@ -319,6 +347,37 @@ function subtractHealth(target, damage) {
 
 	if (value < 0) {
 		// DEAD
+	}
+}
+
+function subtractMana(caster, cost) {
+	var manaBar = $("#caster-" + caster + " .mana-bar");
+	var total = manaBar.data('total'),
+		value = manaBar.data('value'),
+		manaBar_inner = manaBar.find('.bar-inner'),
+		hit = manaBar.find('.hit');
+
+	if (value < 0) {
+		// you're out of mana
+		return;
+	}
+
+	var newValue = value - cost;
+	// calculate the percentage of the total width
+	var barWidth = (newValue / total) * 100;
+	var hitWidth = (cost / value) * 100 + "%";
+
+	// show hit bar and set the width
+	hit.css('width', hitWidth);
+	manaBar.data('value', newValue);
+
+	setTimeout(function () {
+		hit.css({ 'width': '0' });
+		manaBar_inner.css('width', barWidth + "%");
+	}, 500);
+
+	if (value < 0) {
+		// DEPLETED
 	}
 }
 

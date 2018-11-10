@@ -106,7 +106,7 @@ input {
 		margin:0;
 	}
 
-#caster-btns-1 {
+#caster-btns {
 	position: absolute;
 	z-index: 990;
 	bottom: 0;
@@ -117,19 +117,6 @@ input {
 	color: #482e12 !important;
 	left: 50%;
 	transform: translate(-250px, 0);
-}
-
-#caster-btns-2 {
-	position: absolute;
-	z-index: 990;
-	bottom: 0;
-	width: 200px;
-	height: 250px;
-	font-size: 16px;
-	font-family: 'Merienda One', Helvetica, sans-serif;
-	color: #482e12 !important;
-	left: 50%;
-	transform: translate(100px, 0);
 }
 
 #spellbook {
